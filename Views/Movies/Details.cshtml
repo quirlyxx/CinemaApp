@@ -1,0 +1,21 @@
+@model Movie
+@inject IBlobService Blobs
+@{ ViewData["Title"] = Model.Title; }
+
+<a class="back" asp-action="Index">← До списку</a>
+
+<div class="watch">
+    <video controls preload="metadata"
+           poster="@Blobs.GetSasUrl(Model.PosterBlobName)"
+           src="@Blobs.GetSasUrl(Model.VideoBlobName)"></video>
+
+    <aside class="info">
+        <span class="tag">@Model.Genre</span>
+        <h1 class="title">@Model.Title</h1>
+        <p>@Model.Description</p>
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post"
+              onsubmit="return confirm('Видалити фільм разом із файлами?');">
+            <button type="submit" class="btn btn-danger">Видалити фільм</button>
+        </form>
+    </aside>
+</div>

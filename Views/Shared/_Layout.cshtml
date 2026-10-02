@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] — CineCloud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+<header class="topbar">
+    <a class="logo" asp-controller="Movies" asp-action="Index">CINE<span>CLOUD</span></a>
+    <a class="btn btn-red" asp-controller="Movies" asp-action="Create">+ Додати фільм</a>
+</header>
+<main class="wrap">
+    @RenderBody()
+</main>
+<footer class="footer">CineCloud · Онлайн кінотеатр</footer>
+</body>
+</html>

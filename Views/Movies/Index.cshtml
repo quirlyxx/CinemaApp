@@ -1,0 +1,35 @@
+@model List<Movie>
+@inject IBlobService Blobs
+@{ ViewData["Title"] = "Фільми"; }
+
+<section class="hero">
+    <h1>Кіно <span>онлайн</span></h1>
+    <p>Дивіться ваші фільми та трейлери прямо в браузері.</p>
+</section>
+
+@if (!Model.Any())
+{
+    <div class="empty">
+        <p>Фільмів ще немає.</p>
+        <a class="btn btn-red" asp-action="Create">Додати перший фільм</a>
+    </div>
+}
+else
+{
+    <div class="grid">
+    @foreach (var m in Model)
+    {
+        <a class="card" asp-action="Details" asp-route-id="@m.Id">
+            <div class="poster">
+                <img src="@Blobs.GetSasUrl(m.PosterBlobName)" alt="@m.Title" loading="lazy" />
+                <span class="play">▶</span>
+            </div>
+            <div class="card-body">
+                <span class="tag">@m.Genre</span>
+                <h3>@m.Title</h3>
+                <p>@m.Description</p>
+            </div>
+        </a>
+    }
+    </div>
+}

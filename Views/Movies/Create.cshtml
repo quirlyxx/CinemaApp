@@ -1,0 +1,37 @@
+@model MovieForm
+@{ ViewData["Title"] = "Додати фільм"; }
+
+<div class="panel">
+    <h1 class="title">Новий фільм</h1>
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="field">
+            <label asp-for="Title">Назва</label>
+            <input asp-for="Title" placeholder="Наприклад, Inception" />
+            <span asp-validation-for="Title" class="err"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Genre">Жанр</label>
+            <input asp-for="Genre" placeholder="Фантастика" />
+            <span asp-validation-for="Genre" class="err"></span>
+        </div>
+        <div class="field">
+            <label asp-for="Description">Опис</label>
+            <textarea asp-for="Description" rows="4"></textarea>
+            <span asp-validation-for="Description" class="err"></span>
+        </div>
+        <div class="field">
+            <label>Постер</label>
+            <input type="file" name="poster" accept="image/*" />
+            @Html.ValidationMessage("poster", new { @class = "err" })
+        </div>
+        <div class="field">
+            <label>Відео / трейлер</label>
+            <input type="file" name="video" accept="video/*" />
+            @Html.ValidationMessage("video", new { @class = "err" })
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn btn-red" onclick="setTimeout(()=>{this.disabled=true;this.innerText='Завантаження…'},0)">Додати</button>
+            <a class="btn btn-ghost" asp-action="Index">Скасувати.</a>
+        </div>
+    </form>
+</div>
